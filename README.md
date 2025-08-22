@@ -3,9 +3,11 @@
 ## Team Details
 - **Team Name:** Vision Coders
 - **Team Members:**
-  - Sangeetha Rani Rai (Team Leader)
-  - Paritosh Sen (Coder)
-  - Ragni Kumari
+Team Leader – [Sangeeta Rani Rai]
+Technical & Development Lead – [Paritosh Sen]
+Research & Content Head – [Ragni Kumari]
+
+
 
 ## Problem Statement
 Campus-AI Hub addresses the critical need for a comprehensive digital platform that empowers students with AI-driven educational tools, mental health support, and community engagement features, all while providing a safe and anonymous reporting system for campus issues.
@@ -166,4 +168,5 @@ For support, questions, or feedback, please contact the development team or crea
 ---
 
 **Campus-AI Hub - Empowering Students Through Intelligent Technology** 🎓🤖
+
 
