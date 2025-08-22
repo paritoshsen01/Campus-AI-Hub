@@ -1,0 +1,645 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Campus-AI Hub - Your Smart Education Assistant</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <i class="fas fa-graduation-cap"></i>
+                <span>Campus-AI Hub</span>
+            </div>
+            <ul class="nav-menu">
+                <li><a href="#home" class="nav-link active" data-page="home">Home</a></li>
+                <li><a href="#ai-notes" class="nav-link" data-page="ai-notes">AI Notes</a></li>
+                <li><a href="#mental-health" class="nav-link" data-page="mental-health">AI Mental Health</a></li>
+                <li><a href="#hobbies-hub" class="nav-link" data-page="hobbies-hub">Hobbies Hub</a></li>
+                <li><a href="#report-issue" class="nav-link" data-page="report-issue">Report Issue</a></li>
+                <li><a href="#admin-login" class="nav-link" data-page="admin-login">Admin Login</a></li>
+            </ul>
+            <div class="hamburger">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content Container -->
+    <main id="main-content">
+        <!-- Home Page -->
+        <section id="home" class="page active">
+            <div class="hero-section">
+                <div class="hero-content">
+                    <h1>Your Smart Education Assistant</h1>
+                    <p>Empowering students with AI-driven tools for better learning and mental wellness</p>
+                    <div class="hero-buttons">
+                        <button class="btn btn-primary" onclick="navigateToPage('ai-notes')">
+                            <i class="fas fa-book"></i>
+                            Generate AI Notes
+                        </button>
+                        <button class="btn btn-secondary" onclick="navigateToPage('report-issue')">
+                            <i class="fas fa-exclamation-triangle"></i>
+                            Report Issue
+                        </button>
+                    </div>
+                </div>
+                <div class="hero-image">
+                    <i class="fas fa-robot"></i>
+                </div>
+            </div>
+            
+            <div class="features-section">
+                <h2>Our Features</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <i class="fas fa-brain"></i>
+                        <h3>AI Notes Generator</h3>
+                        <p>Get comprehensive notes on any topic instantly</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-heart"></i>
+                        <h3>Mental Health Check-up</h3>
+                        <p>AI-powered mental wellness assessment</p>
+                    </div>
+                    <div class="feature-card">
+                        <i class="fas fa-shield-alt"></i>
+                        <h3>Issue Reporting</h3>
+                        <p>Safe and anonymous issue reporting system</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AI Notes Generator Page -->
+        <section id="ai-notes" class="page">
+            <div class="page-header">
+                <h1>AI Notes Generator</h1>
+                <p>Enter any topic and get comprehensive notes instantly</p>
+            </div>
+            
+            <div class="notes-generator">
+                <div class="input-section">
+                    <input type="text" id="topic-input" placeholder="Enter a topic (e.g., Photosynthesis, Newton's Laws)" />
+                    <button class="btn btn-primary" onclick="generateNotes()">
+                        <i class="fas fa-magic"></i>
+                        Generate Notes
+                    </button>
+                </div>
+                
+                <div id="loading-spinner" class="loading-spinner hidden">
+                    <i class="fas fa-spinner fa-spin"></i>
+                    <p>Generating your notes...</p>
+                </div>
+                
+                <div id="notes-output" class="notes-output hidden">
+                    <div class="notes-header">
+                        <h3 id="notes-title">Generated Notes</h3>
+                        <button class="btn btn-secondary" onclick="downloadPDF()">
+                            <i class="fas fa-download"></i>
+                            Download as PDF
+                        </button>
+                    </div>
+                    <div id="notes-content" class="notes-content"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- AI Mental Health Check-up Page -->
+        <section id="mental-health" class="page">
+            <div class="page-header">
+                <h1>AI Mental Health Check-up</h1>
+                <p>Take a quick assessment to understand your mental wellness</p>
+            </div>
+            
+            <div class="mental-health-container">
+                <div id="assessment-start" class="assessment-section">
+                    <h2>How are you feeling today?</h2>
+                    <p>This assessment will help you understand your current mental state and provide personalized suggestions.</p>
+                    <button class="btn btn-primary" onclick="startAssessment()">
+                        <i class="fas fa-play"></i>
+                        Start Assessment
+                    </button>
+                </div>
+                
+                <div id="assessment-questions" class="assessment-section hidden">
+                    <div class="question-container">
+                        <h3 id="question-text"></h3>
+                        <div id="question-options" class="question-options"></div>
+                        <div class="question-progress">
+                            <span id="question-counter">Question 1 of 5</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div id="assessment-results" class="assessment-section hidden">
+                    <h2>Your Mental Health Summary</h2>
+                    <div id="results-content" class="results-content"></div>
+                    <button class="btn btn-secondary" onclick="restartAssessment()">
+                        <i class="fas fa-redo"></i>
+                        Take Again
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Hobbies Hub Page -->
+        <section id="hobbies-hub" class="page">
+            <div class="page-header">
+                <h1>Hobbies Hub</h1>
+                <p>Share your hobbies with the community through videos and audio</p>
+            </div>
+            
+            <div class="hobbies-container">
+                <!-- Upload Section -->
+                <div class="upload-section">
+                    <h2>Share Your Hobby</h2>
+                    <form id="hobby-upload-form" class="upload-form">
+                        <div class="form-group">
+                            <label for="hobby-title">Title</label>
+                            <input type="text" id="hobby-title" placeholder="Enter a catchy title for your hobby" required />
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="hobby-description">Description</label>
+                            <textarea id="hobby-description" rows="3" placeholder="Tell us about your hobby..." required></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="hobby-category">Category</label>
+                            <select id="hobby-category" required>
+                                <option value="">Select a category</option>
+                                <option value="music">Music & Singing</option>
+                                <option value="dance">Dance</option>
+                                <option value="art">Art & Craft</option>
+                                <option value="sports">Sports & Fitness</option>
+                                <option value="cooking">Cooking</option>
+                                <option value="gaming">Gaming</option>
+                                <option value="photography">Photography</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="hobby-media">Upload Video/Audio</label>
+                            <input type="file" id="hobby-media" accept="video/*,audio/*" multiple required />
+                            <div id="media-preview" class="media-preview hidden">
+                                <div id="multiple-media-preview" class="multiple-media-container"></div>
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="hobby-name">Your Name</label>
+                            <input type="text" id="hobby-name" placeholder="Enter your name" required />
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-upload"></i>
+                            Share Hobby
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Gallery Section -->
+                <div class="gallery-section">
+                    <div class="gallery-header">
+                        <h2>Community Hobbies</h2>
+                        <div class="gallery-filters">
+                            <select id="filter-category" onchange="filterHobbies()">
+                                <option value="all">All Categories</option>
+                                <option value="music">Music & Singing</option>
+                                <option value="dance">Dance</option>
+                                <option value="art">Art & Craft</option>
+                                <option value="sports">Sports & Fitness</option>
+                                <option value="cooking">Cooking</option>
+                                <option value="gaming">Gaming</option>
+                                <option value="photography">Photography</option>
+                                <option value="other">Other</option>
+                            </select>
+                            <input type="text" id="search-hobbies" placeholder="Search hobbies..." onkeyup="filterHobbies()" />
+                        </div>
+                    </div>
+                    
+                    <div id="hobbies-gallery" class="hobbies-grid">
+                        <!-- Hobbies will be populated here -->
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Report Issue Page -->
+        <section id="report-issue" class="page">
+            <div class="page-header">
+                <h1>Report an Issue</h1>
+                <p>Your safety and concerns matter to us</p>
+            </div>
+            
+            <div class="report-container">
+                <div class="report-tabs">
+                    <button class="tab-btn active" onclick="switchTab('issue-report')">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        Report Issue
+                    </button>
+                        <button class="tab-btn" onclick="switchTab('lost-found')">
+                            <i class="fas fa-search"></i>
+                            Lost & Found
+                        </button>
+                </div>
+                
+                <div id="issue-report" class="tab-content active">
+                    <div class="report-tabs">
+                        <button class="tab-btn active" onclick="switchIssueTab('anonymous')">
+                            <i class="fas fa-user-secret"></i>
+                            Anonymous Report
+                        </button>
+                        <button class="tab-btn" onclick="switchIssueTab('personal')">
+                            <i class="fas fa-user"></i>
+                            Personal Report
+                        </button>
+                    </div>
+                    
+                    <form id="anonymous-form" class="report-form active">
+                        <h3>Anonymous Issue Report</h3>
+                        <p>Your identity will remain completely anonymous</p>
+                        
+                        <div class="form-group">
+                            <label for="anonymous-issue-type">Issue Type</label>
+                            <select id="anonymous-issue-type" required>
+                                <option value="">Select issue type</option>
+                                <option value="bullying">Bullying</option>
+                                <option value="harassment">Harassment</option>
+                                <option value="academic">Academic Concerns</option>
+                                <option value="mental-health">Mental Health</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="anonymous-description">Description</label>
+                            <textarea id="anonymous-description" rows="5" placeholder="Please describe the issue in detail..." required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-paper-plane"></i>
+                            Submit Anonymously
+                        </button>
+                    </form>
+                    
+                    <form id="personal-form" class="report-form">
+                        <h3>Personal Issue Report</h3>
+                        <p>We'll follow up with you personally</p>
+                        
+                        <div class="form-group">
+                            <label for="personal-name">Full Name</label>
+                            <input type="text" id="personal-name" required />
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="personal-email">Email Address</label>
+                            <input type="email" id="personal-email" required />
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="personal-issue-type">Issue Type</label>
+                            <select id="personal-issue-type" required>
+                                <option value="">Select issue type</option>
+                                <option value="bullying">Bullying</option>
+                                <option value="harassment">Harassment</option>
+                                <option value="academic">Academic Concerns</option>
+                                <option value="mental-health">Mental Health</option>
+                                <option value="other">Other</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="personal-description">Description</label>
+                            <textarea id="personal-description" rows="5" placeholder="Please describe the issue in detail..." required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-paper-plane"></i>
+                            Submit Report
+                        </button>
+                    </form>
+                </div>
+                
+                <div id="lost-found" class="tab-content">
+                    <div class="report-tabs">
+                        <button class="tab-btn active" onclick="switchLostFoundTab('lost')">
+                            <i class="fas fa-search"></i>
+                            Report Lost Item
+                        </button>
+                        <button class="tab-btn" onclick="switchLostFoundTab('found')">
+                            <i class="fas fa-hand-holding-heart"></i>
+                            Report Found Item
+                        </button>
+                        <button class="tab-btn" onclick="switchLostFoundTab('view-all')">
+                            <i class="fas fa-list"></i>
+                            View All Items
+                        </button>
+                    </div>
+                    
+                    <form id="lost-form" class="lost-found-form active" onsubmit="handleLostSubmit(event)">
+                        <h3>Report Lost Item</h3>
+                        <p>Help us help you find your lost belongings</p>
+                        
+                        <div class="form-group">
+                            <label for="lost-name">Your Name</label>
+                            <input type="text" id="lost-name" required />
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="lost-email">Email Address</label>
+                            <input type="email" id="lost-email" required />
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="lost-item">Item Description</label>
+                            <input type="text" id="lost-item" placeholder="e.g., Black wallet, iPhone 13, etc." required />
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="lost-location">Last Seen Location</label>
+                            <input type="text" id="lost-location" placeholder="e.g., Library, Cafeteria, Room 205" required />
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="lost-date">Date Lost</label>
+                            <input type="date" id="lost-date" required />
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="lost-description">Detailed Description</label>
+                            <textarea id="lost-description" rows="4" placeholder="Provide detailed description including brand, color, size, special features, etc." required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-search"></i>
+                            Report Lost Item
+                        </button>
+                    </form>
+                    
+                    <form id="found-form" class="lost-found-form">
+                        <h3>Report Found Item</h3>
+                        <p>Help reunite lost items with their owners</p>
+                        
+                        <div class="form-group">
+                            <label for="found-name">Your Name</label>
+                            <input type="text" id="found-name" required />
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="found-email">Email Address</label>
+                            <input type="email" id="found-email" required />
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="found-item">Item Found</label>
+                            <input type="text" id="found-item" placeholder="e.g., Black wallet, iPhone 13, etc." required />
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="found-location">Location Found</label>
+                            <input type="text" id="found-location" placeholder="e.g., Library, Cafeteria, Room 205" required />
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="found-date">Date Found</label>
+                            <input type="date" id="found-date" required />
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="found-description">Detailed Description</label>
+                            <textarea id="found-description" rows="4" placeholder="Provide detailed description including brand, color, size, special features, etc." required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-hand-holding-heart"></i>
+                            Report Found Item
+                        </button>
+                    </form>
+
+                    <div id="view-all-items" class="lost-found-form">
+                        <h3>All Lost & Found Items</h3>
+                        <p>Browse through all reported items</p>
+                        
+                        <div class="search-filter-section">
+                            <div class="form-group">
+                                <input type="text" id="search-items" placeholder="Search items..." onkeyup="filterItems()">
+                            </div>
+                            <div class="form-group">
+                                <select id="filter-type" onchange="filterItems()">
+                                    <option value="all">All Items</option>
+                                    <option value="lost">Lost Items</option>
+                                    <option value="found">Found Items</option>
+                                </select>
+                            </div>
+                        </div>
+                        
+                        <div id="items-list" class="items-grid">
+                            <!-- Items will be populated here -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Admin Login Page -->
+        <section id="admin-login" class="page">
+            <div class="page-header">
+                <h1>Admin Login</h1>
+                <p>Secure access to the admin dashboard</p>
+            </div>
+            
+            <div class="login-container">
+                <form id="admin-login-form" class="login-form">
+                    <div class="form-group">
+                        <label for="admin-username">Username</label>
+                        <input type="text" id="admin-username" required />
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="admin-password">Password</label>
+                        <input type="password" id="admin-password" required />
+                    </div>
+                    
+                    <button type="submit" class="btn btn-primary">
+                        <i class="fas fa-sign-in-alt"></i>
+                        Login
+                    </button>
+                </form>
+            </div>
+        </section>
+
+        <!-- Admin Dashboard Page -->
+        <section id="admin-dashboard" class="page">
+            <div class="page-header">
+                <h1>Admin Dashboard</h1>
+                <div class="admin-actions">
+                    <button class="btn btn-secondary" onclick="logoutAdmin()">
+                        <i class="fas fa-sign-out-alt"></i>
+                        Logout
+                    </button>
+                </div>
+            </div>
+            
+            <div class="dashboard-container">
+                <div class="stats-section">
+                    <div class="stat-card">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        <h3 id="total-issues">0</h3>
+                        <p>Total Issues</p>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-user-secret"></i>
+                        <h3 id="anonymous-issues">0</h3>
+                        <p>Anonymous Issues</p>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-user"></i>
+                        <h3 id="personal-issues">0</h3>
+                        <p>Personal Issues</p>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-palette"></i>
+                        <h3 id="total-hobbies">0</h3>
+                        <p>Total Hobbies</p>
+                    </div>
+                </div>
+                
+                <div class="admin-tabs">
+                    <button class="tab-btn active" onclick="switchAdminTab('issues')">
+                        <i class="fas fa-exclamation-triangle"></i>
+                        Issues Management
+                    </button>
+                    <button class="tab-btn" onclick="switchAdminTab('hobbies')">
+                        <i class="fas fa-palette"></i>
+                        Hobbies Hub Admin
+                    </button>
+                </div>
+
+                <!-- Issues Management Tab -->
+                <div id="issues-tab" class="admin-tab-content active">
+                    <div class="issues-table">
+                        <h2>All Reported Issues</h2>
+                        <div class="table-container">
+                            <table id="issues-table">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Type</th>
+                                        <th>Category</th>
+                                        <th>Reporter</th>
+                                        <th>Description</th>
+                                        <th>Date</th>
+                                        <th>Status</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="issues-tbody">
+                                    <!-- Issues will be populated here -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hobbies Hub Admin Tab -->
+                <div id="hobbies-tab" class="admin-tab-content">
+                    <div class="hobbies-admin-section">
+                        <h2>Hobbies Hub Management</h2>
+                        
+                        <div class="hobbies-stats">
+                            <div class="stat-card">
+                                <i class="fas fa-upload"></i>
+                                <h3 id="total-hobbies-uploaded">0</h3>
+                                <p>Total Uploads</p>
+                            </div>
+                            <div class="stat-card">
+                                <i class="fas fa-comment"></i>
+                                <h3 id="total-comments">0</h3>
+                                <p>Total Comments</p>
+                            </div>
+                            <div class="stat-card">
+                                <i class="fas fa-thumbs-up"></i>
+                                <h3 id="total-likes">0</h3>
+                                <p>Total Likes</p>
+                            </div>
+                        </div>
+
+                        <div class="hobbies-controls">
+                            <div class="search-filter-section">
+                                <input type="text" id="search-hobbies-admin" placeholder="Search hobbies..." onkeyup="filterHobbiesAdmin()">
+                                <select id="filter-category-admin" onchange="filterHobbiesAdmin()">
+                                    <option value="all">All Categories</option>
+                                    <option value="music">Music & Singing</option>
+                                    <option value="dance">Dance</option>
+                                    <option value="art">Art & Craft</option>
+                                    <option value="sports">Sports & Fitness</option>
+                                    <option value="cooking">Cooking</option>
+                                    <option value="gaming">Gaming</option>
+                                    <option value="photography">Photography</option>
+                                    <option value="other">Other</option>
+                                </select>
+                                <button class="btn btn-danger" onclick="deleteAllHobbies()">
+                                    <i class="fas fa-trash"></i>
+                                    Delete All
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="hobbies-table">
+                            <table id="hobbies-admin-table">
+                                <thead>
+                                    <tr>
+                                        <th>ID</th>
+                                        <th>Title</th>
+                                        <th>Category</th>
+                                        <th>Uploader</th>
+                                        <th>Likes</th>
+                                        <th>Comments</th>
+                                        <th>Date</th>
+                                        <th>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="hobbies-admin-tbody">
+                                    <!-- Hobbies will be populated here -->
+                                </tbody>
+                            </table>
+                        </div>
+
+                        <div id="hobby-detail-modal" class="modal hidden">
+                            <div class="modal-content large">
+                                <span class="close" onclick="closeHobbyDetailModal()">&times;</span>
+                                <h3>Hobby Details</h3>
+                                <div id="hobby-detail-content"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Success Modal -->
+    <div id="success-modal" class="modal hidden">
+        <div class="modal-content">
+            <i class="fas fa-check-circle success-icon"></i>
+            <h3>Success!</h3>
+            <p id="success-message">Your submission has been received.</p>
+            <button class="btn btn-primary" onclick="closeModal()">OK</button>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
