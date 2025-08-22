@@ -126,28 +126,6 @@ The application is deployed using GitHub Pages for easy access and zero setup re
 - **Data Analytics**: Insights into campus trends and patterns
 - **Compliance Features**: GDPR and educational data protection
 
-### Mobile Development:
-- **Native Mobile Apps**: iOS and Android applications
-- **Wearable Integration**: Smartwatch compatibility for quick access
-- **Voice Commands**: Hands-free operation using voice assistants
-
-## Project Structure
-
-```
-Campus-AI-Hub/
-├── index.html          # Main application file
-├── styles.css          # Comprehensive styling with modern design
-├── script.js           # Complete functionality and interactivity
-└── README.md           # Project documentation
-```
-
-## Browser Compatibility
-
-- ✅ Chrome 80+
-- ✅ Firefox 75+
-- ✅ Safari 13+
-- ✅ Edge 80+
-- ✅ Mobile browsers (iOS Safari, Chrome Mobile)
 
 ## Contributing
 
@@ -157,17 +135,9 @@ We welcome contributions from the community! Please feel free to:
 - Submit pull requests
 - Improve documentation
 
-## License
-
-This project is open source and available under the MIT License.
-
-## Support
-
-For support, questions, or feedback, please contact the development team or create an issue in the project repository.
-
----
 
 **Campus-AI Hub - Empowering Students Through Intelligent Technology** 🎓🤖
+
 
 
 
