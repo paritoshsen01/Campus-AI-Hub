@@ -3,9 +3,9 @@
 ## Team Details
 - **Team Name:** Vision Coders
 - **Team Members:**
-Team Leader – [Sangeeta Rani Rai]
-Technical & Development Lead – [Paritosh Sen]
-Research & Content Head – [Ragni Kumari]
+-- Team Leader – [Sangeeta Rani Rai]
+-- Technical & Development Lead – [Paritosh Sen]
+-- Research & Content Head – [Ragni Kumari]
 
 
 
@@ -168,5 +168,6 @@ For support, questions, or feedback, please contact the development team or crea
 ---
 
 **Campus-AI Hub - Empowering Students Through Intelligent Technology** 🎓🤖
+
 
 
