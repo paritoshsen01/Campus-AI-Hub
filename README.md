@@ -4,7 +4,7 @@
 - **Team Name:** Vision Coders
 - **Team Members:**
   - Sangeetha Rani Rai (Team Leader)
-  - Paritosh Sen
+  - Paritosh Sen (Coder)
   - Ragni Kumari
 
 ## Problem Statement
@@ -166,3 +166,4 @@ For support, questions, or feedback, please contact the development team or crea
 ---
 
 **Campus-AI Hub - Empowering Students Through Intelligent Technology** 🎓🤖
+
